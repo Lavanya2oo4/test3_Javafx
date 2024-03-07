@@ -22,10 +22,10 @@
       <Label layoutX="25.0" layoutY="111.0" text="Contact No:" />
       <TextField fx:id="inputName" layoutX="98.0" layoutY="80.0" prefHeight="25.0" prefWidth="159.0" promptText="ENTER NAME" />
       <TextField fx:id="inputContact" layoutX="98.0" layoutY="107.0" prefHeight="25.0" prefWidth="159.0" promptText="ENTER CONTACT NUMBER" />
-      <CheckBox fx:id="sizeS" layoutX="98.0" layoutY="143.0" mnemonicParsing="false" text="S" />
-      <CheckBox fx:id="sizeM" layoutX="137.0" layoutY="143.0" mnemonicParsing="false" text="M" />
-      <CheckBox fx:id="sizeL" layoutX="178.0" layoutY="143.0" mnemonicParsing="false" text="L" />
-      <CheckBox fx:id="sizeXL" layoutX="221.0" layoutY="143.0" mnemonicParsing="false" text="XL" />
+      <CheckBox fx:id="sizeS" layoutX="98.0" layoutY="143.0" mnemonicParsing="false" text="s" />
+      <CheckBox fx:id="sizeM" layoutX="137.0" layoutY="143.0" mnemonicParsing="false" text="m" />
+      <CheckBox fx:id="sizeL" layoutX="178.0" layoutY="143.0" mnemonicParsing="false" text="l" />
+      <CheckBox fx:id="sizeXL" layoutX="221.0" layoutY="143.0" mnemonicParsing="false" text="xl" />
       <Label layoutX="58.0" layoutY="143.0" text="Size:" />
       <Label layoutX="30.0" layoutY="174.0" text="Toppings:" />
       <TextField fx:id="inputToppings" layoutX="96.0" layoutY="170.0" prefHeight="25.0" prefWidth="159.0" promptText="ENTER NO OF TOPPINGS" />
@@ -45,7 +45,7 @@
             <TableColumn fx:id="tableTotal" prefWidth="75.0" text="TOTAL" />
         </columns>
       </TableView>
-      <Pane fx:id="billPane" layoutX="31.0" layoutY="226.0" prefHeight="206.0" prefWidth="246.0">
+      <Pane fx:id="billPane" layoutX="31.0" layoutY="226.0" prefHeight="206.0" prefWidth="246.0" opacity="0">
          <children>
             <Label layoutX="67.0" layoutY="-1.0" text="PAYMENT" textFill="#e10a0a">
                <font>
