@@ -209,13 +209,84 @@ public class HelloController implements Initializable {
             setMsg("TOPPINGS MUST BE A NUMBER");
             return;
         }
+        if(sizeS.isSelected()){
+            sizeL.setSelected(false);
+            sizeM.setSelected(false);
+            sizeXL.setSelected(false);
+            selectedSize=sizeS.getText();
+        }
+        else if (sizeL.isSelected()) {
+            sizeS.setSelected(false);
+            sizeM.setSelected(false);
+            sizeXL.setSelected(false);
+            selectedSize=sizeL.getText();
+
+        }else if (sizeM.isSelected()) {
+            sizeS.setSelected(false);
+            sizeL.setSelected(false);
+            sizeXL.setSelected(false);
+            selectedSize=sizeM.getText();
+
+        }else if (sizeXL.isSelected()) {
+            sizeL.setSelected(false);
+            sizeM.setSelected(false);
+            sizeXL.setSelected(false);
+            selectedSize=sizeXL.getText();
+
+
+        }
+        else{
+            setMsg("SIZE IS REQUIRED");
+            return;
+        }
+
+        billPane.setOpacity(1);
+
+
+        if(selectedSize.equals("s")){
+            basePrice=8.00;
+            netToppingCost=(Integer.parseInt(toppings)*eachTopping);
+            double netPrice=basePrice+netToppingCost;
+            double afterTax=netPrice+((tax/100f)*netPrice);
+            finalPrice=afterTax;
+
+        } else if (selectedSize.equals("m")) {
+            basePrice=10.00;
+            netToppingCost=(Integer.parseInt(toppings)*eachTopping);
+            double netPrice=basePrice+netToppingCost;
+            double afterTax=netPrice+((tax/100f)*netPrice);
+            finalPrice=afterTax;
+
+
+        } else if (selectedSize.equals("l")) {
+            basePrice=12.00;
+            netToppingCost=(Integer.parseInt(toppings)*eachTopping);
+            double netPrice=basePrice+netToppingCost;
+            double afterTax=netPrice+((tax/100f)*netPrice);
+            finalPrice=afterTax;
+
+
+        }
+        else {
+            basePrice=15.00;
+            netToppingCost=(Integer.parseInt(toppings)*eachTopping);
+            double netPrice=basePrice+netToppingCost;
+            double afterTax=netPrice+((tax/100f)*netPrice);
+            finalPrice=afterTax;
+
+
+        }
+
+        basicCost.setText(String.valueOf(basePrice));
+        toppingCost.setText(String.valueOf(netToppingCost));
+        total.setText(String.valueOf(finalPrice));
 
         try{
-//            Class.forName("com.cj.mysql.jdbc.Driver");
+            Class.forName("com.cj.mysql.jdbc.Driver");
 
         }
         catch(Exception e){
-            System.out.println( e);
+//            System.out.println( e);
         }
         try{
             Connection connection=DriverManager.getConnection(url,username,password);
@@ -298,14 +369,14 @@ public class HelloController implements Initializable {
              basePrice=8.00;
             netToppingCost=(Integer.parseInt(toppings)*eachTopping);
             double netPrice=basePrice+netToppingCost;
-            double afterTax=netPrice+((tax/100)*netPrice);
+            double afterTax=netPrice+((tax/100f)*netPrice);
             finalPrice=afterTax;
 
         } else if (selectedSize.equals("m")) {
             basePrice=10.00;
             netToppingCost=(Integer.parseInt(toppings)*eachTopping);
             double netPrice=basePrice+netToppingCost;
-            double afterTax=netPrice+((tax/100)*netPrice);
+            double afterTax=netPrice+((tax/100f)*netPrice);
             finalPrice=afterTax;
 
 
@@ -313,7 +384,7 @@ public class HelloController implements Initializable {
             basePrice=12.00;
             netToppingCost=(Integer.parseInt(toppings)*eachTopping);
             double netPrice=basePrice+netToppingCost;
-            double afterTax=netPrice+((tax/100)*netPrice);
+            double afterTax=netPrice+((tax/100f)*netPrice);
             finalPrice=afterTax;
 
 
@@ -322,7 +393,7 @@ public class HelloController implements Initializable {
             basePrice=15.00;
             netToppingCost=(Integer.parseInt(toppings)*eachTopping);
             double netPrice=basePrice+netToppingCost;
-            double afterTax=netPrice+((tax/100)*netPrice);
+            double afterTax=netPrice+((tax/100f)*netPrice);
             finalPrice=afterTax;
 
 
