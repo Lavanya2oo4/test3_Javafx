@@ -36,6 +36,7 @@ public class HelloController implements Initializable {
     public Label toppingCost;
     public Label total;
     public TextField orderIdInput;
+    public boolean continuePressed=false;
 
 
     String selectedSize;
@@ -70,6 +71,11 @@ public class HelloController implements Initializable {
         String name_=inputName.getText();
         String toppings=inputToppings.getText();
         String contact=inputContact.getText();
+
+        if(!continuePressed){
+            setMsg("YOU MUST CONTINUE BEFORE PLACING ORDER");
+            return;
+        }
 
         if(name_.equals("") || toppings.equals("") || contact.equals("")){
             setMsg("NAME TOPPINGS CONTACT AND SIZE ARE REQUIRED");
@@ -138,7 +144,7 @@ public class HelloController implements Initializable {
             int rowsAffected=preparedStatement.executeUpdate();
             if(rowsAffected>0){
                 setMsg("ORDER DELETED SUCCESSFULLY");
-
+                fetchAll();
             }
             else{
                 setMsg("FAILED TO DELETE ORDER");
@@ -184,9 +190,60 @@ public class HelloController implements Initializable {
     }
 
     public void updateOrder() {
+        setMsg("");
+        String name_=inputName.getText();
+        String toppings=inputToppings.getText();
+        String contact=inputContact.getText();
+        String orderId=orderIdInput.getText();
+
+
+        if(name_.equals("") || toppings.equals("") || contact.equals("") || orderId.equals("")){
+            setMsg("NAME TOPPINGS CONTACT ORDERID AND SIZE ARE REQUIRED");
+
+            return;
+        }
+        try{
+            Integer.parseInt(toppings);
+        }
+        catch (Exception e){
+            setMsg("TOPPINGS MUST BE A NUMBER");
+            return;
+        }
+
+        try{
+//            Class.forName("com.cj.mysql.jdbc.Driver");
+
+        }
+        catch(Exception e){
+            System.out.println( e);
+        }
+        try{
+            Connection connection=DriverManager.getConnection(url,username,password);
+            String query="UPDATE orders SET name=?,contact=?,size=?,toppings=?,total=? WHERE orderId=? ";
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+            preparedStatement.setString(1,name_);
+            preparedStatement.setString(2,contact);
+            preparedStatement.setString(3,selectedSize);
+            preparedStatement.setInt(4,Integer.parseInt(toppings));
+            preparedStatement.setDouble(5,finalPrice);
+            preparedStatement.setInt(6, Integer.parseInt(orderId));
+
+            int rowsAffected=preparedStatement.executeUpdate();
+            if(rowsAffected>0){
+                setMsg("ORDER UPDATED SUCCESSFULLY");
+                fetchAll();
+            }
+            else{
+                setMsg("FAILED TO UPDATE ORDER");
+            }
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void continueBtn() {
+        continuePressed=true;
         setMsg("");
         String name_=inputName.getText();
         String toppings=inputToppings.getText();
