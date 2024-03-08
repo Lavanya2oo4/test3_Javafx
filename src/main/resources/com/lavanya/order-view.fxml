@@ -45,7 +45,7 @@
             <TableColumn fx:id="tableTotal" prefWidth="75.0" text="TOTAL" />
         </columns>
       </TableView>
-      <Pane fx:id="billPane" layoutX="31.0" layoutY="226.0" prefHeight="206.0" prefWidth="246.0" opacity="0">
+      <Pane fx:id="billPane" layoutX="31.0" layoutY="232.0" opacity="0" prefHeight="254.0" prefWidth="254.0">
          <children>
             <Label layoutX="67.0" layoutY="-1.0" text="PAYMENT" textFill="#e10a0a">
                <font>
